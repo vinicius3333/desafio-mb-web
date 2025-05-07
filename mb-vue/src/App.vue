@@ -2,7 +2,7 @@
   <main class="main-app">
     <section class="main-app__block" v-show="currentStep === 0">
       <BaseTitle textStart="1" title="Seja bem vindo(a)" />
-      <form class="form" @submit.prevent="submitFirstStep()">
+      <form class="form" @submit.prevent="currentStep++">
         <InputText id="email" title="Endereço de e-mail" type="email" v-model="formData.email" />
         <InputRadioGroup text="type-person" :list="items" v-model="formData.typePerson" />
         <InputButton text="Continuar" type="submit" />
@@ -11,10 +11,11 @@
 
     <section class="main-app__block" v-show="currentStep === 1 && formData.typePerson === 'pf'">
       <BaseTitle textStart="2" title="Pessoa Física" />
-      <form class="form" @submit.prevent="submitSecondStep()">
+      <form class="form" @submit.prevent="currentStep++">
         <InputText id="name" title="Nome" v-model="formData.name" />
-        <InputText id="cpf" title="CPF" />
-        <InputText id="birth-date" title="Data de nascimento" v-model="formData.birthDate" type="date" :maxDate="new Date().toISOString().split('T')[0]" />
+        <InputText id="cpf" title="CPF" v-model="formData.cpf" />
+        <InputText id="birth-date" title="Data de nascimento" v-model="formData.birthDate" type="date"
+          :maxDate="new Date().toISOString().split('T')[0]" />
         <InputText id="phone" title="Telefone" v-model="formData.phone" />
 
         <div class="button-group">
@@ -27,11 +28,12 @@
 
     <section class="main-app__block" v-show="currentStep === 1 && formData.typePerson === 'pj'">
       <BaseTitle textStart="2" title="Pessoa Jurídica" />
-      <form class="form" @submit.prevent="submitSecondStep()">
-        <InputText id="name" title="Razão social" v-model="formData.name" />
+      <form class="form" @submit.prevent="currentStep++">
+        <InputText id="name-pj" title="Razão social" v-model="formData.name" />
         <InputText id="cnpj" title="CNPJ" v-model="formData.cnpj" />
-        <InputText id="birth-date" title="Data de abertura" v-model="formData.openingDate" type="date" :maxDate="new Date().toISOString().split('T')[0]" />
-        <InputText id="phone" title="Telefone" v-model="formData.phone" />
+        <InputText id="opening-date" title="Data de abertura" v-model="formData.openingDate" type="date"
+          :maxDate="new Date().toISOString().split('T')[0]" />
+        <InputText id="phone-pj" title="Telefone" v-model="formData.phone" />
         <div class="button-group">
           <InputButton text="Voltar" outline @click="() => currentStep--" />
           <InputButton text="Continuar" type="submit" />
@@ -41,7 +43,7 @@
 
     <section class="main-app__block" v-show="currentStep === 2">
       <BaseTitle textStart="3" title="Senha de acesso" />
-      <form class="form" @submit.prevent="submitThirdStep()">
+      <form class="form" @submit.prevent="currentStep++">
         <InputText id="password" title="Sua senha" type="password" v-model="formData.password" />
         <div class="button-group">
           <InputButton text="Voltar" outline @click="() => currentStep--" />
@@ -58,13 +60,15 @@
         <template v-if="formData.typePerson === 'pf'">
           <InputText id="name-review" title="Nome" v-model="formData.name" />
           <InputText id="cpf-review" title="CPF" v-model="formData.cpf" />
-          <InputText id="birth-date-review" title="Data de nascimento" v-model="formData.birthDate" />
+          <InputText id="birth-date-review" title="Data de nascimento" v-model="formData.birthDate"
+            :maxDate="new Date().toISOString().split('T')[0]" />
         </template>
 
         <template v-if="formData.typePerson === 'pj'">
           <InputText id="name-review" title="Razão social" v-model="formData.name" />
           <InputText id="cnpj-review" title="CNPJ" v-model="formData.cnpj" />
-          <InputText id="opening-date-review" title="Data de abertura" v-model="formData.openingDate" />
+          <InputText id="opening-date-review" title="Data de abertura" v-model="formData.openingDate"
+            :maxDate="new Date().toISOString().split('T')[0]" />
         </template>
 
         <InputText id="phone-review" title="Telefone" v-model="formData.phone" />
@@ -113,21 +117,6 @@ const formData = reactive({
   phone: "",
   password: ""
 })
-
-function submitFirstStep(e) {
-  console.log('submit', formData)
-  currentStep.value++
-}
-
-function submitSecondStep(e) {
-  console.log('submit', formData)
-  currentStep.value++
-}
-
-function submitThirdStep(e) {
-  console.log('submit', formData)
-  currentStep.value++
-}
 
 function submitForm() {
   console.log('submit', formData)
