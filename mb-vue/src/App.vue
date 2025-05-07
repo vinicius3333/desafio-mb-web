@@ -13,10 +13,10 @@
       <BaseTitle textStart="2" title="Pessoa Física" />
       <form class="form" @submit.prevent="currentStep++">
         <BaseInput id="name" title="Nome" v-model="formData.name" />
-        <BaseInput id="cpf" title="CPF" v-model="formData.cpf" />
+        <BaseInput id="cpf" title="CPF" v-model="formData.cpf" mask="cpf" />
         <BaseInput id="birth-date" title="Data de nascimento" v-model="formData.birthDate" type="date"
           :max="new Date().toISOString().split('T')[0]" />
-        <BaseInput id="phone" title="Telefone" v-model="formData.phone" />
+        <BaseInput id="phone" title="Telefone" v-model="formData.phone" mask="phone" />
 
         <div class="button-group">
           <BaseButton text="Voltar" outline @click="() => currentStep--" />
@@ -30,10 +30,10 @@
       <BaseTitle textStart="2" title="Pessoa Jurídica" />
       <form class="form" @submit.prevent="currentStep++">
         <BaseInput id="name-pj" title="Razão social" v-model="formData.name" />
-        <BaseInput id="cnpj" title="CNPJ" v-model="formData.cnpj" />
+        <BaseInput id="cnpj" title="CNPJ" v-model="formData.cnpj" mask="cnpj" />
         <BaseInput id="opening-date" title="Data de abertura" v-model="formData.openingDate" type="date"
           :max="new Date().toISOString().split('T')[0]" />
-        <BaseInput id="phone-pj" title="Telefone" v-model="formData.phone" />
+        <BaseInput id="phone-pj" title="Telefone" v-model="formData.phone" mask="phone" />
         <div class="button-group">
           <BaseButton text="Voltar" outline @click="() => currentStep--" />
           <BaseButton text="Continuar" type="submit" />
@@ -59,19 +59,19 @@
 
         <template v-if="formData.typePerson === 'pf'">
           <BaseInput id="name-review" title="Nome" v-model="formData.name" />
-          <BaseInput id="cpf-review" title="CPF" v-model="formData.cpf" />
+          <BaseInput id="cpf-review" title="CPF" v-model="formData.cpf" mask="cpf" />
           <BaseInput id="birth-date-review" title="Data de nascimento" v-model="formData.birthDate"
             :max="new Date().toISOString().split('T')[0]" />
         </template>
 
         <template v-if="formData.typePerson === 'pj'">
           <BaseInput id="name-review" title="Razão social" v-model="formData.name" />
-          <BaseInput id="cnpj-review" title="CNPJ" v-model="formData.cnpj" />
+          <BaseInput id="cnpj-review" title="CNPJ" v-model="formData.cnpj" mask="cnpj" />
           <BaseInput id="opening-date-review" title="Data de abertura" v-model="formData.openingDate"
             :max="new Date().toISOString().split('T')[0]" />
         </template>
 
-        <BaseInput id="phone-review" title="Telefone" v-model="formData.phone" />
+        <BaseInput id="phone-review" title="Telefone" v-model="formData.phone" mask="phone" />
         <BaseInput id="password-review" title="Senha" type="password" v-model="formData.password" />
         <div class="button-group">
           <BaseButton text="Voltar" outline @click="() => currentStep--" />

@@ -1,12 +1,16 @@
 <template>
     <div class="input-text">
         <label class="input-text__label" :for="id">{{ title }}</label>
-        <input class="input-text__field" :id="id" :name="id" :type="type" :title="title" v-model="model" required :max="max" />
+        <input ref="base-input" class="input-text__field" :id="id" :name="id" :type="type" :title="title"
+            v-model="localModel" required :max="max" />
     </div>
 </template>
 
 <script setup>
-defineProps({
+import { maskCnpj, maskCpf, maskPhone } from '@/composables/useMask'
+import { ref, useTemplateRef, watch } from 'vue'
+
+const props = defineProps({
     id: {
         type: String,
         required: true
@@ -22,10 +26,44 @@ defineProps({
     max: {
         type: String,
         required: false
+    },
+    mask: {
+        type: String,
+        required: false,
+        validator(value) {
+            if (!value) return false
+            return ['cpf', 'cnpj', 'phone'].includes(value)
+        },
+        default: null
     }
 })
 
-let model = defineModel()
+const baseInputRef = useTemplateRef("base-input");
+
+function validateInput() {
+    console.log(baseInputRef.value)
+}
+
+defineExpose({ validateInput })
+
+const model = defineModel()
+const localModel = ref(model.value)
+
+watch(localModel, (val) => {
+    if (props.mask === 'cpf') {
+        localModel.value = maskCpf(val)
+    }
+
+    if (props.mask === 'cnpj') {
+        localModel.value = maskCnpj(val)
+    }
+
+    if (props.mask === 'phone') {
+        localModel.value = maskPhone(val)
+    }
+
+    model.value = localModel.value
+})
 </script>
 
 <style lang="scss" scoped>
