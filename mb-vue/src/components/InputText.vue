@@ -1,7 +1,7 @@
 <template>
     <div class="input-text">
         <label class="input-text__label" :for="id">{{ title }}</label>
-        <input class="input-text__field" :id="id" :name="id" type="email" :title="title" />
+        <input class="input-text__field" :id="id" :name="id" :type="type" :title="title" v-model="model" required :max="maxDate" />
     </div>
 </template>
 
@@ -15,7 +15,17 @@ defineProps({
         type: String,
         required: false,
     },
+    type: {
+        type: String,
+        default: "text"
+    },
+    maxDate: {
+        type: String,
+        required: false
+    }
 })
+
+let model = defineModel()
 </script>
 
 <style lang="scss" scoped>
@@ -31,6 +41,7 @@ defineProps({
     &__field {
         border: 1px solid #090909;
         border-radius: 4px;
+        padding: 4px;
 
         &:focus {
             outline: none;
