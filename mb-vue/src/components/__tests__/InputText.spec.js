@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import InputText from '../InputText.vue'
+import BaseInput from '../BaseInput.vue'
 
-describe('InputText', () => {
+describe('BaseInput', () => {
     const props = {
         id: 'name',
         title: 'Nome',
@@ -12,7 +12,7 @@ describe('InputText', () => {
       }
     
       it('renders label and input correctly', () => {
-        const wrapper = mount(InputText, {
+        const wrapper = mount(BaseInput, {
           props
         })
     
@@ -32,7 +32,7 @@ describe('InputText', () => {
       })
     
       it('changes v-model correctly', async () => {
-        const wrapper = mount(InputText, {
+        const wrapper = mount(BaseInput, {
           props
         })
     

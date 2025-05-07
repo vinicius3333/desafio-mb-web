@@ -1,16 +1,16 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import InputButton from '../InputButton.vue'
+import BaseButton from '../BaseButton.vue'
 
-describe('InputButton', () => {
+describe('BaseButton', () => {
     it('renders text correctly', () => {
-        const wrapper = mount(InputButton, { props: { text: 'Botão' } })
+        const wrapper = mount(BaseButton, { props: { text: 'Botão' } })
         expect(wrapper.text()).toContain('Botão')
     })
 
     it('renders outline correctly', () => {
-        const wrapper = mount(InputButton, { props: { outline: true } })
+        const wrapper = mount(BaseButton, { props: { outline: true } })
         expect(wrapper.classes()).toContain('primary-outline')
     })
 })
