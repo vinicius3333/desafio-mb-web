@@ -2,7 +2,7 @@
   <fieldset class="input-radio">
     <div v-for="(item) in list" class="input-radio__item">
       <input class="input-radio__field" type="radio" :id="item.id" :name="item.name" :value="item.id"
-        .checked="item.checked" v-model="model" required />
+        :checked="item.checked" v-model="model" required />
       <label class="input-radio__label" :for="item.id">{{ item.text }}</label>
     </div>
   </fieldset>
@@ -10,13 +10,17 @@
 
 <script setup>
 defineProps({
-  text: {
-    type: String,
-    required: false,
-  },
   list: {
     type: Array,
     required: true
+    // [
+    //   {
+    //     id: String,
+    //     name: String,
+    //     text: String,
+    //     checked: Boolean
+    //   }
+    // ]
   }
 })
 

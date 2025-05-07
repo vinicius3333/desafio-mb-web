@@ -1,7 +1,7 @@
 <template>
     <div class="input-text">
         <label class="input-text__label" :for="id">{{ title }}</label>
-        <input class="input-text__field" :id="id" :name="id" :type="type" :title="title" v-model="model" required :max="maxDate" />
+        <input class="input-text__field" :id="id" :name="id" :type="type" :title="title" v-model="model" required :max="max" />
     </div>
 </template>
 
@@ -19,7 +19,7 @@ defineProps({
         type: String,
         default: "text"
     },
-    maxDate: {
+    max: {
         type: String,
         required: false
     }

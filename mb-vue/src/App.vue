@@ -15,7 +15,7 @@
         <InputText id="name" title="Nome" v-model="formData.name" />
         <InputText id="cpf" title="CPF" v-model="formData.cpf" />
         <InputText id="birth-date" title="Data de nascimento" v-model="formData.birthDate" type="date"
-          :maxDate="new Date().toISOString().split('T')[0]" />
+          :max="new Date().toISOString().split('T')[0]" />
         <InputText id="phone" title="Telefone" v-model="formData.phone" />
 
         <div class="button-group">
@@ -32,7 +32,7 @@
         <InputText id="name-pj" title="Razão social" v-model="formData.name" />
         <InputText id="cnpj" title="CNPJ" v-model="formData.cnpj" />
         <InputText id="opening-date" title="Data de abertura" v-model="formData.openingDate" type="date"
-          :maxDate="new Date().toISOString().split('T')[0]" />
+          :max="new Date().toISOString().split('T')[0]" />
         <InputText id="phone-pj" title="Telefone" v-model="formData.phone" />
         <div class="button-group">
           <InputButton text="Voltar" outline @click="() => currentStep--" />
@@ -61,14 +61,14 @@
           <InputText id="name-review" title="Nome" v-model="formData.name" />
           <InputText id="cpf-review" title="CPF" v-model="formData.cpf" />
           <InputText id="birth-date-review" title="Data de nascimento" v-model="formData.birthDate"
-            :maxDate="new Date().toISOString().split('T')[0]" />
+            :max="new Date().toISOString().split('T')[0]" />
         </template>
 
         <template v-if="formData.typePerson === 'pj'">
           <InputText id="name-review" title="Razão social" v-model="formData.name" />
           <InputText id="cnpj-review" title="CNPJ" v-model="formData.cnpj" />
           <InputText id="opening-date-review" title="Data de abertura" v-model="formData.openingDate"
-            :maxDate="new Date().toISOString().split('T')[0]" />
+            :max="new Date().toISOString().split('T')[0]" />
         </template>
 
         <InputText id="phone-review" title="Telefone" v-model="formData.phone" />
