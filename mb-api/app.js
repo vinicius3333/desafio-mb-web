@@ -1,13 +1,13 @@
 import { join } from "path";
 import { existsSync } from "fs";
-import { __dirname  } from "./src/utils/get-dirname.js"
+import { __dirname } from "./src/utils/get-dirname.js"
 import express from "express";
 
 import registrationRoute from "./src/routes/registration.route.js";
 
 const app = express()
 const port = 3000
-const assetsFront = join(__dirname + "../../../../mb-vue/dist/assets")
+const assetsFront = join("public/assets")
 
 if (!existsSync(assetsFront)) {
   console.error("Don't found assets folder...")
