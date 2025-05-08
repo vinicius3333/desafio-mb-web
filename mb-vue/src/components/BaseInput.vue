@@ -11,6 +11,7 @@
       :title="title"
       v-model="localModel"
       :max="max"
+      :autocomplete="autocomplete"
     />
     <small class="input-text__error" v-if="error">
       {{ error }}
@@ -52,6 +53,10 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  autocomplete: {
+    type: String,
+    required: false
+  }
 })
 
 const baseInputRef = useTemplateRef('base-input')

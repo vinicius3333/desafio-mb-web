@@ -116,7 +116,7 @@ export function validateCreateUser(req, res, next) {
         errors.push({ field: "email", message: "E-mail é obrigatório." })
     }
 
-    if (!validateEmail(email)) { //  || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    if (!validateEmail(email)) {
         errors.push({ field: "email", message: "E-mail está no formato inválido." })
     }
 

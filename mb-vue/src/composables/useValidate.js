@@ -73,7 +73,7 @@ export function useValidate(formData) {
     typePerson: computed(() => {
       const errors = []
 
-      if (formData.typePerson.trim() === '') errors.push('Tipo de conta é obrigatório.')
+      if (formData.typePerson.trim() === '') errors.push('Tipo de cadastro é obrigatório.')
 
       return errors
     }),
