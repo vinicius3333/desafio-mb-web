@@ -6,6 +6,7 @@ Somos a maior plataforma de negociação de criptomoedas e ativos alternativos d
   * [Docker](#docker)
   * [Local](#local)
   * [Express com build](#express-com-build)
+  * [Testes unitários](#testes-unitários)
 
 ## Requisitos
 - Node 20+
@@ -55,3 +56,9 @@ cd ../mb-api
 npm start
 ```
 Pronto, agora você acessar a app em [http://localhost:3000/registration](http://localhost:3000/registration).
+
+### Testes unitários
+Dentro do diretório do front-end é possível rodar os testes unitários da app:
+``` bash
+npm run test:unit
+```
