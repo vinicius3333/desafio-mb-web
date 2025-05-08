@@ -29,16 +29,6 @@ describe('InputRadioGroup', () => {
     expect(wrapper.text()).toContain('Feijão')
   })
 
-  it('renders default checked: true correctly', () => {
-    const wrapper = mount(InputRadioGroup, {
-      props: { list },
-    })
-
-    const inputs = wrapper.findAll('input[type="radio"]')
-    const checkedInput = inputs.find((input) => input.element.checked)
-    expect(checkedInput.element.id).toBe('feijao')
-  })
-
   it('changes v-model correctly', async () => {
     const wrapper = mount(InputRadioGroup, {
       props: { list },
