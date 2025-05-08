@@ -58,7 +58,7 @@ npm start
 Pronto, agora você acessar a app em [http://localhost:3000/registration](http://localhost:3000/registration).
 
 ### Testes unitários
-Dentro do diretório do front-end é possível rodar os testes unitários da app:
+Dentro do diretório do front-end é possível rodar os seus testes unitários:
 ``` bash
 npm run test:unit
 ```
