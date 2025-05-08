@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20 AS build
 
 WORKDIR /app
 
@@ -6,6 +6,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build
 
-CMD ["npm", "run", "build"]
+ENV VITE_API_URL=http://localhost:3000
+RUN npm run build

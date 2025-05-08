@@ -4,12 +4,15 @@ services:
   frontend:
     build: ./mb-vue
     volumes:
-      - ./mb-vue/dist:/frontend-dist
-    command: npm run build
-
+      - front_dist:/app/dist
   backend:
     build: ./mb-api
     ports:
       - "3000:3000"
     volumes:
-      - ./mb-vue/dist:/app/public
+      - front_dist:/app/public
+    depends_on:
+      - frontend
+
+volumes:
+  front_dist:
