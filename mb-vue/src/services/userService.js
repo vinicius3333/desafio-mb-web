@@ -1,6 +1,7 @@
-const API_URL = import.meta.env.VITE_API_URL
-
 export async function createUser(payload) {
+  // Could be better call an external config file for this
+  const API_URL = import.meta.env.VITE_API_URL
+
   const response = await fetch(`${API_URL}/registration`, {
     method: 'POST',
     headers: {
