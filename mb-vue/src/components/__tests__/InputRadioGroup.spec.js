@@ -39,4 +39,14 @@ describe('InputRadioGroup', () => {
 
     expect(wrapper.vm.model).toBe('arroz')
   })
+
+  it('renders error correctly', () => {
+    const error = 'Campo é obrigatório'
+    const wrapper = mount(InputRadioGroup, { props: { list, error } })
+
+    const small = wrapper.find('small')
+
+    expect(small.exists()).toBe(true)
+    expect(small.text()).toBe(error)
+  })
 })

@@ -21,7 +21,7 @@
 
 <script setup>
 import { maskCnpj, maskCpf, maskPhone } from '@/composables/useMask'
-import { ref, useTemplateRef, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   id: {
@@ -58,14 +58,6 @@ const props = defineProps({
     required: false
   }
 })
-
-const baseInputRef = useTemplateRef('base-input')
-
-function validateInput() {
-  console.log(baseInputRef.value)
-}
-
-defineExpose({ validateInput })
 
 const model = defineModel()
 const localModel = ref(model.value)
