@@ -57,7 +57,7 @@ describe('BaseInput', () => {
       title: 'Nome',
       type: 'text',
       max: '100',
-      error: 'Campo é obrigatório.'
+      error: 'Campo é obrigatório.',
     }
     const wrapper = mount(BaseInput, { props })
 
@@ -98,7 +98,6 @@ describe('BaseInput', () => {
 
     expect(wrapperPhone.vm.model).toBe('(11) 9663-2233')
 
-    
     const inputPhoneEleven = wrapperPhone.find('input')
     await inputPhoneEleven.setValue('11996632233')
 

@@ -18,7 +18,7 @@ describe('EmailStep.vue', () => {
 
   beforeEach(() => {
     wrapper = shallowMount(EmailStep, {
-      props
+      props,
     })
   })
 

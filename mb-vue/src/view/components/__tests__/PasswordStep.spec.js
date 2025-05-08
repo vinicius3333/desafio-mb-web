@@ -16,7 +16,7 @@ describe('PasswordStep.vue', () => {
 
   beforeEach(() => {
     wrapper = shallowMount(PasswordStep, {
-      props
+      props,
     })
   })
 

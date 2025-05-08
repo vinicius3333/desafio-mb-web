@@ -52,7 +52,7 @@ const outlineClass = computed(() => {
 
   &.primary {
     background-color: #ff9900;
-    color: white;
+    color: #f5f5f5;
 
     &:active {
       background-color: #e69419;
@@ -60,13 +60,13 @@ const outlineClass = computed(() => {
   }
 
   &.primary-outline {
-    background-color: white;
+    background-color: #f5f5f5;
     color: #ff9900;
     border: 1px solid #ff9900;
 
     &:active {
       background-color: #ff9900;
-      color: white;
+      color: #f5f5f5;
     }
   }
 }

@@ -17,12 +17,12 @@ describe('PjStep.vue', () => {
       phone: '',
     },
   }
-  
+
   let wrapper
 
   beforeEach(() => {
     wrapper = shallowMount(PjStep, {
-      props
+      props,
     })
   })
 

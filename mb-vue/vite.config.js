@@ -19,6 +19,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: '../mb-api/public/'
+    outDir: '../mb-api/public/',
+    emptyOutDir: true
   }
 })

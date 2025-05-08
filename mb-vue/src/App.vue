@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import CreateUserWizard from "./view/CreateUserWizard.vue"
+import CreateUserWizard from './view/CreateUserWizard.vue'
 </script>
 
 <style lang="scss" scoped>

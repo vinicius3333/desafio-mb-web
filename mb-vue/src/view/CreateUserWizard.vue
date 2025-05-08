@@ -1,20 +1,43 @@
 <template>
-    <EmailStep v-if="currentStep === 0" @validate-step="validateStep(['email', 'typePerson'])" v-model="formData"
-        :errors="errors" />
+  <EmailStep
+    v-if="currentStep === 0"
+    @validate-step="validateStep(['email', 'typePerson'])"
+    v-model="formData"
+    :errors="errors"
+  />
 
-    <PfStep v-if="currentStep === 1 && formData.typePerson === 'pf'"
-        @validate-step="validateStep(['name', 'cpf', 'birthDate', 'phone'])" v-model="formData" :errors="errors"
-        @go-back-step="() => currentStep--" />
+  <PfStep
+    v-if="currentStep === 1 && formData.typePerson === 'pf'"
+    @validate-step="validateStep(['name', 'cpf', 'birthDate', 'phone'])"
+    v-model="formData"
+    :errors="errors"
+    @go-back-step="() => currentStep--"
+  />
 
-    <PjStep v-if="currentStep === 1 && formData.typePerson === 'pj'"
-        @validate-step="validateStep(['legalName', 'cnpj', 'openingDate', 'phone'])" v-model="formData" :errors="errors"
-        @go-back-step="() => currentStep--" />
+  <PjStep
+    v-if="currentStep === 1 && formData.typePerson === 'pj'"
+    @validate-step="validateStep(['legalName', 'cnpj', 'openingDate', 'phone'])"
+    v-model="formData"
+    :errors="errors"
+    @go-back-step="() => currentStep--"
+  />
 
-    <PasswordStep v-if="currentStep === 2" @validate-step="validateStep(['password'])" v-model="formData"
-        :errors="errors" @go-back-step="() => currentStep--" />
+  <PasswordStep
+    v-if="currentStep === 2"
+    @validate-step="validateStep(['password'])"
+    v-model="formData"
+    :errors="errors"
+    @go-back-step="() => currentStep--"
+  />
 
-    <ConfirmationStep v-if="currentStep === 3" @submit-form="submitForm()" v-model="formData" :errors="errors" :loading="loadingUser"
-        @go-back-step="() => currentStep--" />
+  <ConfirmationStep
+    v-if="currentStep === 3"
+    @submit-form="submitForm()"
+    v-model="formData"
+    :errors="errors"
+    :loading="loadingUser"
+    @go-back-step="() => currentStep--"
+  />
 </template>
 
 <script setup>
@@ -33,71 +56,90 @@ const { registerUser, loading: loadingUser } = useUserApi()
 let currentStep = ref(0)
 
 const formData = reactive({
-    email: '',
-    typePerson: '',
-    name: '',
-    cpf: '',
-    cnpj: '',
-    birthDate: '',
-    openingDate: '',
-    phone: '',
-    password: '',
-    legalName: '',
+  email: '',
+  typePerson: '',
+  name: '',
+  cpf: '',
+  cnpj: '',
+  birthDate: '',
+  openingDate: '',
+  phone: '',
+  password: '',
+  legalName: '',
 })
 
 const { validateForm, errors } = useValidate(formData)
 
 function validateStep(inputList) {
-    if (validateForm(inputList)) {
-        currentStep.value++
-    }
+  if (validateForm(inputList)) {
+    currentStep.value++
+  }
 }
 
 function submitForm() {
-    let isFormValid = false
+  let isFormValid = false
+  let postFormData = {}
 
-    if (formData.typePerson === 'pf') {
-        isFormValid = validateForm(['email', 'name', 'cpf', 'birthDate', 'phone', 'password'])
+  if (formData.typePerson === 'pf') {
+    isFormValid = validateForm(['email', 'name', 'cpf', 'birthDate', 'phone', 'password'])
+    postFormData = {
+      birthDate: formData.birthDate,
+      cpf: formData.cpf,
+      email: formData.email,
+      name: formData.name,
+      password: formData.password,
+      phone: formData.phone,
+      typePerson: formData.typePerson,
     }
+  }
 
-    if (formData.typePerson === 'pj') {
-        isFormValid = validateForm(['email', 'legalName', 'cnpj', 'openingDate', 'phone', 'password'])
+  if (formData.typePerson === 'pj') {
+    isFormValid = validateForm(['email', 'legalName', 'cnpj', 'openingDate', 'phone', 'password'])
+    postFormData = {
+      cnpj: formData.cnpj,
+      email: formData.email,
+      legalName: formData.legalName,
+      openingDate: formData.openingDate,
+      password: formData.password,
+      phone: formData.phone,
+      typePerson: formData.typePerson,
     }
+  }
 
-    if (!isFormValid) return
+  if (!isFormValid) return
 
-    registerUser(formData)
+  registerUser(postFormData)
 }
 </script>
 
 <style lang="scss">
 .section {
+  max-width: 260px;
+  width: 100%;
+
+  .base-title {
+    margin-bottom: 16px;
+  }
+
+  .form {
     max-width: 260px;
     width: 100%;
 
-    .base-title {
-        margin-bottom: 16px;
+    .input-text {
+      margin-bottom: 16px;
     }
 
-    .form {
-        max-width: 260px;
-        width: 100%;
-
-        .input-text {
-            margin-bottom: 16px;
-        }
-
-        .input-radio {
-            margin-bottom: 16px;
-        }
-
-        .button-group {
-            display: flex;
-
-            .input-button:first-child {
-                margin-right: 8px;
-            }
-        }
+    .input-radio {
+      margin-bottom: 16px;
     }
+
+    .button-group {
+      display: flex;
+
+      .input-button:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
 }
 </style>

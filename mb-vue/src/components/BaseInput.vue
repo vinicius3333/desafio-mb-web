@@ -55,8 +55,8 @@ const props = defineProps({
   },
   autocomplete: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 })
 
 const model = defineModel()
