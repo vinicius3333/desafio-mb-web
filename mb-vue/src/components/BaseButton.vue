@@ -1,11 +1,11 @@
 <template>
-  <button :class="['input-button', outlineClass]" :type="type">
+  <button :class="['input-button', outlineClass]" :type="type" :disabled="disabled">
     {{ text }}
   </button>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const props = defineProps({
   text: {
@@ -14,20 +14,24 @@ const props = defineProps({
   },
   type: {
     type: String,
-    default: "button"
+    default: 'button',
   },
   outline: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const outlineClass = computed(() => {
   if (props.outline) {
-    return "primary-outline"
+    return 'primary-outline'
   }
 
-  return "primary"
+  return 'primary'
 })
 </script>
 
@@ -41,8 +45,13 @@ const outlineClass = computed(() => {
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
   padding: 8px 0;
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+
   &.primary {
-    background-color: #FF9900;
+    background-color: #ff9900;
     color: white;
 
     &:active {
@@ -52,11 +61,11 @@ const outlineClass = computed(() => {
 
   &.primary-outline {
     background-color: white;
-    color: #FF9900;
-    border: 1px solid #FF9900;
+    color: #ff9900;
+    border: 1px solid #ff9900;
 
     &:active {
-      background-color: #FF9900;
+      background-color: #ff9900;
       color: white;
     }
   }

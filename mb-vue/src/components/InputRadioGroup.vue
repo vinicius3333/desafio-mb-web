@@ -1,9 +1,16 @@
 <template>
   <div class="input-radio">
     <fieldset class="input-radio__block">
-      <div v-for="(item) in list" class="input-radio__item">
-        <input class="input-radio__field" type="radio" :id="item.id" :name="item.name" :value="item.id"
-           v-model="model" required />
+      <div v-for="item in list" class="input-radio__item">
+        <input
+          class="input-radio__field"
+          type="radio"
+          :id="item.id"
+          :name="item.name"
+          :value="item.id"
+          v-model="model"
+          required
+        />
         <label class="input-radio__label" :for="item.id">{{ item.text }}</label>
       </div>
     </fieldset>
@@ -17,7 +24,7 @@
 defineProps({
   list: {
     type: Array,
-    required: true
+    required: true,
     // [
     //   {
     //     id: String,
@@ -29,8 +36,8 @@ defineProps({
   },
   error: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 })
 
 let model = defineModel()

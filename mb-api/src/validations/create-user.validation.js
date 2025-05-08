@@ -1,9 +1,9 @@
 function validateEmail(email) {
-    return email.includes('@')
+    return email.includes("@")
 }
 
 function validateCPF(cpf) {
-    cpf = cpf.replace(/[^\d]+/g, '')
+    cpf = cpf.replace(/[^\d]+/g, "")
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false
 
     let sum = 0
@@ -24,12 +24,12 @@ function validateCPF(cpf) {
 }
 
 function validatePhone(phone) {
-    const cleaned = phone.replace(/\D/g, '');
+    const cleaned = phone.replace(/\D/g, "");
     return /^(?:\d{10}|\d{11})$/.test(cleaned);
 }
 
 function validateCNPJ(cnpj) {
-    const cleaned = cnpj.replace(/\D/g, '');
+    const cleaned = cnpj.replace(/\D/g, "");
 
     if (cleaned.length !== 14 || /^(\d)\1+$/.test(cleaned)) return false;
 
@@ -47,7 +47,7 @@ function validateCNPJ(cnpj) {
 }
 
 function validateDate(dateStr) {
-    const [year, month, day] = dateStr.split('-').map(Number)
+    const [year, month, day] = dateStr.split("-").map(Number)
 
     if (!day || !month || !year) return false
 
@@ -63,23 +63,23 @@ function validatePf(errors, body) {
     const { name, cpf, birthDate } = body
 
     if (!name) {
-        errors.push({ field: 'name', message: 'Nome é obrigatório.' })
+        errors.push({ field: "name", message: "Nome é obrigatório." })
     }
 
     if (!cpf) {
-        errors.push({ field: 'cpf', message: 'CPF é obrigatório.' })
+        errors.push({ field: "cpf", message: "CPF é obrigatório." })
     }
 
     if (!validateCPF(cpf)) {
-        errors.push({ field: 'cpf', message: 'CPF está no formato inválido.' })
+        errors.push({ field: "cpf", message: "CPF está no formato inválido." })
     }
 
     if (!birthDate) {
-        errors.push({ field: 'birthDate', message: "Data de nascimento é obrigatório." })
+        errors.push({ field: "birthDate", message: "Data de nascimento é obrigatório." })
     }
 
     if (!validateDate(birthDate)) {
-        errors.push({ field: 'birthDate', message: "Data de nascimento está no formato inválido." })
+        errors.push({ field: "birthDate", message: "Data de nascimento está no formato inválido." })
     }
 }
 
@@ -87,23 +87,23 @@ function validatePj(errors, body) {
     const { legalName, cnpj, openingDate } = body
 
     if (!legalName) {
-        errors.push({ field: 'legalName', message: 'Razão social é obrigatório.' })
+        errors.push({ field: "legalName", message: "Razão social é obrigatório." })
     }
 
     if (!cnpj) {
-        errors.push({ field: 'cnpj', message: 'CNPJ é obrigatório.' })
+        errors.push({ field: "cnpj", message: "CNPJ é obrigatório." })
     }
 
     if (!validateCNPJ(cnpj)) {
-        errors.push({ field: 'cnpj', message: 'CNPJ está no formato inválido.' })
+        errors.push({ field: "cnpj", message: "CNPJ está no formato inválido." })
     }
 
     if (!openingDate) {
-        errors.push({ field: 'openingDate', message: "Data de abertura é obrigatório." })
+        errors.push({ field: "openingDate", message: "Data de abertura é obrigatório." })
     }
 
-    if (!validateDate(cnpj)) {
-        errors.push({ field: 'cnpj', message: 'CNPJ está no formato inválido.' })
+    if (!validateDate(openingDate)) {
+        errors.push({ field: "openingDate", message: "Data de abertura está no formato inválido." })
     }
 }
 
@@ -113,31 +113,31 @@ export function validateCreateUser(req, res, next) {
     const errors = []
 
     if (!email) {
-        errors.push({ field: 'email', message: 'E-mail é obrigatório.' })
+        errors.push({ field: "email", message: "E-mail é obrigatório." })
     }
 
     if (!validateEmail(email)) { //  || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-        errors.push({ field: 'email', message: 'E-mail está no formato inválido.' })
+        errors.push({ field: "email", message: "E-mail está no formato inválido." })
     }
 
     if (!password) {
-        errors.push({ field: 'password', message: 'Senha é obrigatório.' })
+        errors.push({ field: "password", message: "Senha é obrigatório." })
     }
 
     if (!phone) {
-        errors.push({ field: 'phone', message: 'Telefone é obrigatório.' })
+        errors.push({ field: "phone", message: "Telefone é obrigatório." })
     }
 
     if (!validatePhone(phone)) {
-        errors.push({ field: 'phone', message: 'Telefone está no formato inválido.' })
+        errors.push({ field: "phone", message: "Telefone está no formato inválido." })
     }
 
     if (!typePerson) {
-        errors.push({ field: 'typePerson', message: 'Tipo de cadastro é obrigatório.' })
+        errors.push({ field: "typePerson", message: "Tipo de cadastro é obrigatório." })
     }
 
-    if (typePerson === 'pf') validatePf(errors, req.body)
-    if (typePerson === 'pj') validatePj(errors, req.body)
+    if (typePerson === "pf") validatePf(errors, req.body)
+    if (typePerson === "pj") validatePj(errors, req.body)
 
     if (errors.length > 0) {
         return res.status(400).json({ errors })

@@ -14,6 +14,18 @@ if (!existsSync(assetsFront)) {
   process.exit()
 }
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173")
+  res.header("Access-Control-Allow-Methods", "GET, POST")
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
+
 app.use(express.json())
 
 app.use("/assets", express.static(assetsFront))
@@ -23,7 +35,7 @@ app.use("/registration", registrationRoute);
 app.use((req, res) => {
   res.status(404).json({
     error: 404,
-    message: 'Route not found',
+    message: "Route not found",
   });
 });
 
