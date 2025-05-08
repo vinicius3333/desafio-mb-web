@@ -1,8 +1,11 @@
 <template>
     <div class="input-text">
         <label class="input-text__label" :for="id">{{ title }}</label>
-        <input ref="base-input" class="input-text__field" :id="id" :name="id" :type="type" :title="title"
-            v-model="localModel" required :max="max" />
+        <input ref="base-input" class="input-text__field" :class="{ 'input-text__field--error': !!error }" :id="id" :name="id" :type="type" :title="title"
+            v-model="localModel" :max="max" />
+        <small class="input-text__error" v-if="error">
+            {{ error }}
+        </small>
     </div>
 </template>
 
@@ -35,6 +38,10 @@ const props = defineProps({
             return ['cpf', 'cnpj', 'phone'].includes(value)
         },
         default: null
+    },
+    error: {
+        type: String,
+        required: false
     }
 })
 
@@ -78,12 +85,21 @@ watch(localModel, (val) => {
 
     &__field {
         border: 1px solid #090909;
-        border-radius: 4px;
-        padding: 4px;
+        border-radius: 2px;
+        padding: 4px 6px;
+
+        &--error {
+            border-color: rgb(238, 0, 0);
+        }
 
         &:focus {
             outline: none;
         }
+    }
+
+    &__error {
+        margin-top: 8px;
+        color: rgb(238, 0, 0);
     }
 }
 </style>
