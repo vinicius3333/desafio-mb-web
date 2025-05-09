@@ -16,7 +16,7 @@ Somos a maior plataforma de negociação de criptomoedas e ativos alternativos d
 ### Docker
 Execute o app com o docker rodando o seguinte comando na raiz do projeto:
 ``` bash
-docker compose -f 'docker-compose.yml' up -d --build
+docker-compose up -d
 ```
 Agora já é possível acessar clicando em [http://localhost:3000/registration](http://localhost:3000/registration).
 
