@@ -38,6 +38,9 @@ cd ../mb-api
 npm install
 npm run dev
 ```
+
+Também é necessário criar um arquivo .env na raíz do projeto do mb-vue com a url do backend (VITE_API_URL=http://localhost:3000)
+
 Para acessar a aplicação web, clique em [http://localhost:5173](http://localhost:5173).
 
 ### Express com build
