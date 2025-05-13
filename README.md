@@ -46,6 +46,8 @@ Para acessar a aplicação web, clique em [http://localhost:5173](http://localho
 ### Express com build
 Por último, você pode buildar o projeto local do front e fazer com que o backend retorne esse html e simule um ambiente de produção localmente.
 
+Antes de buildar o front, é necessário criar um arquivo .env na raíz do projeto do mb-vue com a url do backend (VITE_API_URL=http://localhost:3000)
+
 Começamos no front-end:
 ``` bash
 cd mb-vue
